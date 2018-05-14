@@ -16,6 +16,6 @@ def change_password():
     req_data = request.get_json(force=True)
     password = req_data['password']
     print('echo -e "{}" | sudo passwd pi'.format(password + "\\n" + password))
-    p = subprocess.Popen(['echo -e "{}" | sudo passwd pi'.format(password + "\\n" + password)], shell=True)
-    print(p.communicate())
+    p = subprocess.call('echo -e "{}" | sudo passwd pi'.format(password + "\\n" + password), shell=True)
+    print(p)
     return str({"status": True})
