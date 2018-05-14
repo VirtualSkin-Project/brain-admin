@@ -13,4 +13,4 @@ def hello_world():
 def change_password():
     req_data = request.get_json(force=True)  # force=True will make sure this works even if a client does not specify application/json
     password = req_data['password']  # or whatever key you have in your json
-    return 'sudo passwd fred < {}'.format(password)
+    return 'echo -e "{}\n{}" | sudo passwd pi'.format(password, password)
