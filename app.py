@@ -1,20 +1,5 @@
-import subprocess
-from flask import Flask
-from flask import request
+from app import app
 
 
-app = Flask(__name__)
-
-
-@app.route('/')
-def hello_world():
-    return 'Hello, World!'
-
-
-@app.route('/rpi/password', methods=['PUT'])
-def change_password():
-    req_data = request.get_json(force=True)
-    password = req_data['password']
-    print('echo -e "{}" | sudo passwd pi'.format(password + "\\n" + password))
-    p = subprocess.call('bash change_password.sh "{}"'.format(password + "\\n" + password), shell=True)
-    return str({"status": p})
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080, debug=True)
