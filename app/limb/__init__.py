@@ -1,6 +1,5 @@
 # Import flask dependencies
-from flask import Blueprint, request, json, abort
-from sqlalchemy import sql
+from flask import Blueprint, json, abort
 
 # Import module models (i.e. Limb)
 from app import app, db, constants as c

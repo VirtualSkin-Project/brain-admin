@@ -1,4 +1,5 @@
 # Import flask dependencies
+import unicode
 import subprocess
 from sqlalchemy import sql
 from app.limb.model import Limb
@@ -39,7 +40,7 @@ def change_password():
             description: Return json with new limb
     """
     req = request.get_json(force=True)
-    password = req['password'] if type(req['password']) is str else abort(c.CONFLICT, c.TYPE_ERROR.format('password'))
+    password = req['password'] if type(req['password']) is unicode else abort(c.CONFLICT, c.TYPE_ERROR.format('password'))
     print('echo -e "{}" | sudo passwd pi'.format(password + "\\n" + password))
     p = subprocess.call('bash change_password.sh "{}"'.format(password + "\\n" + password), shell=True)
     result = {"status": p}
