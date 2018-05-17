@@ -4,7 +4,6 @@ IP=$1
 MYPWD=`echo ~`
 
 if [[ ! `grep "$1" "${MYPWD}/.ssh/config"` ]]; then
-        sudo cp ../deploy ${MYPWD}/.ssh/deploy
         sudo cat <<EOF >> ${MYPWD}/.ssh/config
 Host $1
  HostName $1
