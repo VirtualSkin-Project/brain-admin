@@ -49,3 +49,45 @@ def remove(limb_id):
     else:
         abort(c.CONFLICT)
     return app.response_class(response=json.dumps(result), status=c.OK, mimetype=c.JSON)
+
+
+@limb.route('/<limb_id>', methods=c.VIEW)
+def show_limb(limb_id):
+    """
+    Show one of limb
+    Route to show a limb connected on Virtual Brain
+    ---
+    tags:
+        - limb
+    responses:
+        200:
+            description: Return JSON with limb's data
+    """
+    r_limb = db.session.query(Limb).get(limb_id)
+    result = [{col: getattr(d, col) for col in Limb.cols} for d in r_limb]
+    return app.response_class(response=json.dumps(result), status=c.OK, mimetype=c.JSON)
+
+
+@limb.route('/<name_limb>/password', methods=c.DELETE)
+def remove(name_limb):
+    """
+    Change password of limb by name
+    Route to remove a limb connected on Virtual Brain
+    ---
+    tags:
+        - limb
+    responses:
+        200:
+            description: Return code equals to 0 on success and greater on error
+    """
+    r_limb = db.session.query(Limb).get(name_limb)
+    result = {}
+    if r_limb is not None:
+        db.session.delete(r_limb)
+        if db.session.commit() is None:
+            result = {"status": 0}
+        else:
+            abort(c.CONFLICT)
+    else:
+        abort(c.CONFLICT)
+    return app.response_class(response=json.dumps(result), status=c.OK, mimetype=c.JSON)
