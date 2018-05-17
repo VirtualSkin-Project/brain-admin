@@ -64,7 +64,7 @@ def show_limb(limb_id):
             description: Return JSON with limb's data
     """
     r_limb = db.session.query(Limb).get(limb_id)
-    result = [{col: getattr(d, col) for col in Limb.cols} for d in r_limb]
+    result = [{col: getattr(d, col) for col in Limb.cols} for d in [r_limb]]
     return app.response_class(response=json.dumps(result), status=c.OK, mimetype=c.JSON)
 
 
