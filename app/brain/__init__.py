@@ -69,5 +69,7 @@ def subscribe():
     db.session.add(n_limb)
     db.session.commit()
     p = subprocess.call('bash ssh-copy.sh {}'.format(ip), shell=True)
+    if not p:
+        p = subprocess.call('bash ssh-config.sh {}'.format(ip), shell=True)
     result = {"status": p}
     return app.response_class(response=json.dumps(result), status=c.OK, mimetype=c.JSON)
