@@ -65,8 +65,9 @@ def subscribe():
     ip = req['ip'] if type(req['ip']) is unicode else abort(c.CONFLICT, c.TYPE_ERROR.format('ip'))
     area = req['area'] if type(req['area']) is unicode else abort(c.CONFLICT, c.TYPE_ERROR.format('area'))
     sub_area = req['sub_area'] if 'sub_area' in req else sql.null()
-    result = {"name": name, "ip": ip, "area": area, "sub_area": str(sub_area)}
-    n_limb = Limb(name=name, ip=ip, area=area, sub_area=sub_area)
+    ssh_key = req['ssh_key'] if type(req['ssh_key']) is unicode else abort(c.CONFLICT, c.TYPE_ERROR.format('ssh_key'))
+    result = {"name": name, "ip": ip, "area": area, "sub_area": str(sub_area), "ssh_key": ssh_key}
+    n_limb = Limb(name=name, ip=ip, area=area, sub_area=sub_area, ssh_key=ssh_key)
     db.session.add(n_limb)
     db.session.commit()
     return app.response_class(response=json.dumps(result), status=c.OK, mimetype=c.JSON)
