@@ -64,7 +64,11 @@ def show_limb(limb_id):
             description: Return JSON with limb's data
     """
     r_limb = db.session.query(Limb).get(limb_id)
-    result = [{col: getattr(d, col) for col in Limb.cols} for d in [r_limb]]
+    result = {}
+    if r_limb is not None:
+        result = [{col: getattr(d, col) for col in Limb.cols} for d in [r_limb]]
+    else:
+        abort(c.CONFLICT)
     return app.response_class(response=json.dumps(result), status=c.OK, mimetype=c.JSON)
 
 
