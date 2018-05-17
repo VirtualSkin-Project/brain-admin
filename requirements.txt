@@ -1,5 +1,6 @@
 sqlalchemy
 flask
 flask_sqlalchemy
+flask_cors
 flask_swagger
 unicode

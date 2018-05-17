@@ -2,10 +2,13 @@ from flask import Flask, json, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_swagger import swagger
 from app import constants as c
+from flask_cors import CORS
+
 
 app = Flask(__name__)
 app.config.from_object('config')
 db = SQLAlchemy(app)
+CORS(app)
 
 
 @app.errorhandler(c.NOT_FOUND)
