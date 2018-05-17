@@ -58,7 +58,7 @@ def spec():
     swag['info']['group'] = "VirtualSkin"
     swag['info']['members'] = [
         "Antoine MARTIN (martin_a) <martin_a@etna-alternance.net>",
-        "Raphaël DEBRAY(debray_r) <debray_r@etna-alternance.net>",
+        "Raphael DEBRAY (debray_r) <debray_r@etna-alternance.net>",
         "Florian BERENICE (bereni_f) <bereni_f@etna-alternance.net>",
         "Jonathan LOQUET (loquet_j) <loquet_j@etna-alternance.net>"
     ]
