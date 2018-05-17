@@ -69,25 +69,21 @@ def show_limb(limb_id):
 
 
 @limb.route('/<name_limb>/password', methods=c.DELETE)
-def remove(name_limb):
+def change_password(name_limb):
     """
-    Change password of limb by name
-    Route to remove a limb connected on Virtual Brain
+    Change brain password
+    Use this route to change the ssh password on Virtual Brain
     ---
     tags:
-        - limb
+        - brain
     responses:
         200:
-            description: Return code equals to 0 on success and greater on error
+            description: Return json with new limb
     """
-    r_limb = db.session.query(Limb).get(name_limb)
-    result = {}
-    if r_limb is not None:
-        db.session.delete(r_limb)
-        if db.session.commit() is None:
-            result = {"status": 0}
-        else:
-            abort(c.CONFLICT)
-    else:
-        abort(c.CONFLICT)
+    # req = request.get_json(force=True)
+    # password = req['password'] if type(req['password']) is unicode else abort(c.CONFLICT, c.TYPE_ERROR.format('password'))
+    # print('echo -e "{}" | sudo passwd pi'.format(password + "\\n" + password))
+    # p = subprocess.call('bash change_password.sh "{}"'.format(password + "\\n" + password), shell=True)
+    # result = {"status": p}
+    result = {"status": name_limb}
     return app.response_class(response=json.dumps(result), status=c.OK, mimetype=c.JSON)
