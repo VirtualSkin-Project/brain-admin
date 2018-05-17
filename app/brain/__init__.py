@@ -1,5 +1,4 @@
 # Import flask dependencies
-import unicode
 import subprocess
 from sqlalchemy import sql
 from app.limb.model import Limb
