@@ -1,4 +1,5 @@
 # Import flask dependencies
+import os
 import subprocess
 from sqlalchemy import sql
 from app.limb.model import Limb
@@ -41,7 +42,7 @@ def change_password():
     req = request.get_json(force=True)
     password = req['password'] if type(req['password']) is unicode else abort(c.CONFLICT, c.TYPE_ERROR.format('password'))
     print('echo -e "{}" | sudo passwd pi'.format(password + "\\n" + password))
-    p = subprocess.call('bash change_password.sh "{}"'.format(password + "\\n" + password), shell=True)
+    p = subprocess.call('bash {} "{}"'.format('/home/pi/brain-admin/change_password.sh', password + "\\n" + password), shell=True)
     result = {"status": p}
     # result = {"status": 0}
     return app.response_class(response=json.dumps(result), status=c.OK, mimetype=c.JSON)
@@ -68,8 +69,8 @@ def subscribe():
     n_limb = Limb(name=name, ip=ip, area=area, sub_area=sub_area)
     db.session.add(n_limb)
     db.session.commit()
-    p = subprocess.call('bash ssh-copy.sh {}'.format(ip), shell=True)
+    p = subprocess.call('bash {} {}'.format('/home/pi/brain-admin/ssh-copy.sh', ip), shell=True)
     if not p:
-        p = subprocess.call('bash ssh-config.sh {}'.format(ip), shell=True)
+        p = subprocess.call('bash {} {}'.format('/home/pi/brain-admin/ssh-config.sh', ip), shell=True)
     result = {"status": p}
     return app.response_class(response=json.dumps(result), status=c.OK, mimetype=c.JSON)
