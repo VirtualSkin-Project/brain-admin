@@ -11,7 +11,9 @@
 
 case "$1" in
 start)
-   /home/pi/brain-admin/venv/bin/python /home/pi/brain-admin/app.py &
+   cd /home/pi/brain-admin/
+   /home/pi/brain-admin/venv/bin/gunicorn app:app --bind 0.0.0.0:8080 &
+#   /home/pi/brain-admin/venv/bin/python /home/pi/brain-admin/app.py &
    echo $!>/var/run/brain-manager.pid
    ;;
 stop)
