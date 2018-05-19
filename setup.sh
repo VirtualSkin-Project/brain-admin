@@ -2,13 +2,8 @@
 
 echo `which virtualenv`
 
-if [[ ! `which nginx` ]]; then
-    sudo apt install nginx
-fi
-
-if [[ ! `which virtualenv` ]]; then
-    sudo pip install virtualenv
-fi
+sudo apt install nginx
+sudo pip install virtualenv
 
 virtualenv venv
 `. venv/bin/activate`
