@@ -20,3 +20,9 @@ sudo update-rc.d brain-manager defaults
 sudo systemctl start brain-manager.service
 
 sudo apt install -y npm
+sudo npm install -g @angular/cli
+
+git clone https://github.com/VirtualSkin-Project/brain-front.git
+cd brain-front
+npm install package.json
+ng serve --host 0.0.0.0 --port 8000&
