@@ -18,3 +18,5 @@ fi
 sudo cp brain-manager /etc/init.d/brain-manager
 sudo update-rc.d brain-manager defaults
 sudo systemctl start brain-manager.service
+
+sudo apt install -y npm
