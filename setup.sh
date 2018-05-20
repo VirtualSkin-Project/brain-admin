@@ -22,9 +22,9 @@ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
 sudo apt install -y nodejs
 sudo npm install -g @angular/cli
 
-if [ ! -d ./brain-front ] ; then
-	git clone https://github.com/VirtualSkin-Project/brain-front.git
+if [ ! -d ./front ] ; then
+	git clone https://github.com/VirtualSkin-Project/brain-front.git front
 fi
-cd brain-front
+cd front
 npm install package.json
 sudo ng serve --host 0.0.0.0 --port 80 --disable-host-check &
