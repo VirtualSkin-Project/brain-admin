@@ -67,8 +67,10 @@ def subscribe():
     sub_area = req['sub_area'] if 'sub_area' in req else sql.null()
     result = {"name": name, "ip": ip, "area": area, "sub_area": str(sub_area)}
     n_limb = Limb(name=name, ip=ip, area=area, sub_area=sub_area)
-    db.session.add(n_limb)
-    db.session.commit()
+    r_limb = db.session.query(Limb).filter(Limb.name == name)
+    if r_limb is None:
+        db.session.add(n_limb)
+        db.session.commit()
     p = subprocess.call('bash {} {}'.format('/home/pi/brain-admin/ssh-copy.sh', ip), shell=True)
     if not p:
         p = subprocess.call('bash {} {}'.format('/home/pi/brain-admin/ssh-config.sh', ip), shell=True)
