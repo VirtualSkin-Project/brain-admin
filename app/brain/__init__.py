@@ -42,7 +42,7 @@ def change_password():
     req = request.get_json(force=True)
     password = req['password'] if type(req['password']) is unicode else abort(c.CONFLICT, c.TYPE_ERROR.format('password'))
     print('echo -e "{}" | sudo passwd pi'.format(password + "\\n" + password))
-    p = subprocess.call('bash {} "{}"'.format('/home/pi/brain-admin/change_password.sh', password + "\\n" + password), shell=True)
+    p = subprocess.call('bash {} "{}"'.format(os.environ.get('VIRTUALSKIN') + '/change_password.sh', password + "\\n" + password), shell=True)
     result = {"status": p}
     # result = {"status": 0}
     return app.response_class(response=json.dumps(result), status=c.OK, mimetype=c.JSON)
@@ -71,8 +71,8 @@ def subscribe():
     if r_limb is None:
         db.session.add(n_limb)
         db.session.commit()
-    p = subprocess.call('bash {} {}'.format('/home/pi/brain-admin/ssh-copy.sh', ip), shell=True)
+    p = subprocess.call('bash {} {}'.format(os.environ.get('VIRTUALSKIN') + '/ssh-copy.sh', ip), shell=True)
     if not p:
-        p = subprocess.call('bash {} {}'.format('/home/pi/brain-admin/ssh-config.sh', ip), shell=True)
+        p = subprocess.call('bash {} {}'.format(os.environ.get('VIRTUALSKIN') + '/ssh-config.sh', ip), shell=True)
     result = {"status": p}
     return app.response_class(response=json.dumps(result), status=c.OK, mimetype=c.JSON)

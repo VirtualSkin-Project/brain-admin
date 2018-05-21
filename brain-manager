@@ -11,8 +11,7 @@
 
 case "$1" in
 start)
-   cd /home/pi/brain-admin/
-   /home/pi/brain-admin/venv/bin/gunicorn app:app --bind 0.0.0.0:8080 &
+   $VIRTUALSKIN_BRAIN_ADMIN/venv/bin/gunicorn app:app --bind 0.0.0.0:8080 &
 #   /home/pi/brain-admin/venv/bin/python /home/pi/brain-admin/app.py &
    echo $!>/var/run/brain-manager.pid
    ;;
