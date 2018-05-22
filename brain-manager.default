@@ -1,0 +1,17 @@
+
+VIRTUALSKIN_USER_HOME=/home/pi
+VIRTUALSKIN_HOME=/home/pi/VirtualSkin
+VIRTUALSKIN_BRAIN=/home/pi/VirtualSkin/virtual-brain
+VIRTUALSKIN_BRAIN_ADMIN=/home/pi/VirtualSkin/virtual-brain/admin
+VIRTUALSKIN_LIMB=/home/pi/VirtualSkin/virtual-limb
+VIRTUALSKIN_LIMB_ADMIN=/home/pi/VirtualSkin/virtual-limb/admin
+VIRTUALSKIN_BRAIN=/home/pi/VirtualSkin/virtual-brain/virtual-brain
+VIRTUALSKIN_BRAIN_ADMIN=/home/pi/VirtualSkin/virtual-brain/virtual-brain/admin
+VIRTUALSKIN_LIMB=/home/pi/VirtualSkin/virtual-brain/virtual-limb
+VIRTUALSKIN_LIMB_ADMIN=/home/pi/VirtualSkin/virtual-brain/virtual-limb/admin
+VIRTUALSKIN_USER_HOME=/root
+VIRTUALSKIN_HOME=/home/pi/VirtualSkin
+VIRTUALSKIN_BRAIN=/home/pi/VirtualSkin/virtual-brain
+VIRTUALSKIN_BRAIN_ADMIN=/home/pi/VirtualSkin/virtual-brain/admin
+VIRTUALSKIN_LIMB=/home/pi/VirtualSkin/virtual-limb
+VIRTUALSKIN_LIMB_ADMIN=/home/pi/VirtualSkin/virtual-limb/admin

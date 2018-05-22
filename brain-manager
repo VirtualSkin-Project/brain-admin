@@ -9,10 +9,17 @@
 # Description:       Enable service provided by daemon.
 ### END INIT INFO
 
+[ -f /etc/default/brain-manager ] && . /etc/default/brain-manager
+
+if [ -z "$VIRTUALSKIN_BRAIN_ADMIN" ] ;  then
+  echo "VIRTUALSKIN_BRAIN_ADMIN is not set, please set it in /etc/default/brain-manager" >> /tmp/brain-manager.log
+  exit 1
+fi
+
 case "$1" in
 start)
-   $VIRTUALSKIN_BRAIN_ADMIN/venv/bin/gunicorn app:app --bind 0.0.0.0:8080 &
-#   /home/pi/brain-admin/venv/bin/python /home/pi/brain-admin/app.py &
+#   $VIRTUALSKIN_BRAIN_ADMIN/venv/bin/gunicorn app:app --bind 0.0.0.0:8080 >> $VIRTUALSKIN_BRAIN_ADMIN/run.log
+   $VIRTUALSKIN_BRAIN_ADMIN/venv/bin/python $VIRTUALSKIN_BRAIN_ADMIN/app.py >> $VIRTUALSKIN_BRAIN_ADMIN/run.log &
    echo $!>/var/run/brain-manager.pid
    ;;
 stop)
@@ -33,6 +40,7 @@ status)
    ;;
 *)
    echo "Usage: $0 {start|stop|status|restart}"
+   echo "$VIRTUALSKIN_BRAIN_ADMIN"
 esac
 
 exit 0
